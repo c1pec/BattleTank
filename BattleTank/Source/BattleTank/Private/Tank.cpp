@@ -34,7 +34,7 @@ void ATank::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
 
 void ATank::AimAt(const FVector & HitLocation)
 {
-	AimingComponent->AimAt(HitLocation);
+	AimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 // Called to bind functionality to input
