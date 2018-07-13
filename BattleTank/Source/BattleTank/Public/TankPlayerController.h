@@ -33,9 +33,16 @@ private:
 	// Get world location of line-trace through crosshair, returns true if hits landscape
 	bool GetSightRayHitLocation(FVector& outHitLocation) const;
 
+	bool GetLookDirection(const FVector2D& ScreenLocation, FVector& OutLookDirection) const;
+
+	bool GetLookVectorHitLocation(const FVector& LookDirection, FVector& HitLocation) const;
+
 	UPROPERTY(EditAnywhere)
 	float CrosshairXLocation = 0.5;
 
 	UPROPERTY(EditAnywhere)
 	float CrosshairYLocation = 0.3333;
+
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 1000000.f;
 };
