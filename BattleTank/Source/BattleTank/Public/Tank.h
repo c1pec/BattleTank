@@ -31,6 +31,9 @@ public:
 
 	void AimAt(const FVector& HitLocation);
 
+	UFUNCTION(BlueprintCallable)
+	void Fire() const;
+
 protected:
 	UTankAimingComponent* AimingComponent = nullptr;
 
