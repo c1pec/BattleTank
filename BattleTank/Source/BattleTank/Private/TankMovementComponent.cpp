@@ -7,23 +7,32 @@
 
 void UTankMovementComponent::Initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
 {
-	if (LeftTrackToSet && RightTrackToSet)
-	{
-		LeftTrack = LeftTrackToSet;
-		RightTrack = RightTrackToSet;
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("UTankMovementComponent::Initialise() is missing pointers to set"));
-	}
-	
+	LeftTrack = LeftTrackToSet;
+	RightTrack = RightTrackToSet;
 }
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Intend move forward throw: %f"), Throw);
+	if (!LeftTrack || !RightTrack)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UTankMovementComponent::IntendMoveForward() has nullptr reference"));
+		return;
+	}
 
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
+	// TODO prevent double speed due to dual control use
+}
+
+void UTankMovementComponent::IntendTurnRight(float Throw)
+{
+	if (!LeftTrack || !RightTrack)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UTankMovementComponent::IntendTurnRight() has nullptr reference"));
+		return;
+	}
+
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
 	// TODO prevent double speed due to dual control use
 }
