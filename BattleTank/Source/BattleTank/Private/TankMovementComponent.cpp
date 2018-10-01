@@ -13,7 +13,7 @@ void UTankMovementComponent::Initialise(UTankTrack* LeftTrackToSet, UTankTrack* 
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		UE_LOG(LogTemp, Error, TEXT("UTankMovementComponent::IntendMoveForward() has nullptr reference"));
 		return;
@@ -25,7 +25,7 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		UE_LOG(LogTemp, Error, TEXT("UTankMovementComponent::IntendTurnRight() has nullptr reference"));
 		return;

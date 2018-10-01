@@ -24,15 +24,17 @@ void ATank::BeginPlay()
 
 void ATank::AimAt(const FVector & HitLocation)
 {
-	if (!AimingComponent) { return; }
+	if (!ensure(AimingComponent)) { return; }
 	AimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire()
 {
+	if (!ensure(Barrel)) { return; }
+
 	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
-	if (Barrel && bIsReloaded)
+	if (bIsReloaded)
 	{
 		AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")));
 		Projectile->LaunchProjectile(LaunchSpeed);
