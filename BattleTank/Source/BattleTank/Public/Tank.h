@@ -7,7 +7,6 @@
 #include "Tank.generated.h"
 
 
-class UTankAimingComponent;
 class UTankBarrel;
 class UTankTurret;
 class AProjectile;
@@ -24,14 +23,8 @@ public:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void AimAt(const FVector& HitLocation);
-
 	UFUNCTION(BlueprintCallable)
 	void Fire();
-
-protected:
-	UPROPERTY(BlueprintReadOnly, Category = "Setup")
-	UTankAimingComponent* AimingComponent = nullptr;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")

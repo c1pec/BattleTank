@@ -1,7 +1,6 @@
 // Copyright Hugo Galliot 2018
 
 #include "Tank.h"
-#include "TankAimingComponent.h"
 #include "Engine/World.h"
 #include "Engine/StaticMeshSocket.h"
 #include "TankBarrel.h"
@@ -19,14 +18,6 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-
-	AimingComponent = FindComponentByClass<UTankAimingComponent>();
-}
-
-void ATank::AimAt(const FVector & HitLocation)
-{
-	if (!ensure(AimingComponent)) { return; }
-	AimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire()
